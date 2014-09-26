@@ -17,6 +17,8 @@ var Player = function(game, num, kind){
   self.game = game;
   self.element = $("#player" + self.num);
   self.shot = 1;
+  self.startAt = null;
+  self.endAt = null;
 
   self.element.addClass("hero-" + self.kind);
 
@@ -66,9 +68,36 @@ var Player = function(game, num, kind){
   }
 
   self.step = function(){
+    if (!self.startAt){
+      self.startAt = new Date();
+    }
     self._incrementPosition();
     self._animateCharacter();
     self._checkWin();
+  }
+
+  self.recordsman = function(){
+    var raw = localStorage.getItem("hero-" + self.kind);
+    var current = JSON.parse(raw);
+
+    if (self.raceTime() < current.time){
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  self.raceTime = function(){
+    return self.endAt - self.startAt;
+  }
+
+  self.saveRecord = function(id){
+    var data = {
+      id: "#" + id,
+      time: self.raceTime(),
+      hero: self.heroName()
+    }
+    localStorage.setItem("hero-" + self.kind, JSON.stringify(data));
   }
 
   self.heroName = function(){
@@ -86,6 +115,7 @@ var Player = function(game, num, kind){
   self._checkWin = function(){
     if (self.position == 100){
       self.game.setWinner(self);
+      self.endAt = new Date();
     }
   }
 }
@@ -113,12 +143,9 @@ var Game = function(){
 
     self._cleanup();
 
-    $(document.body).on("keyup", function(e){
-      if (e.which == 32){
-        $(document.body).off("keyup");
-        self.showPlayers();
-      }
-    });
+    setTimeout(function(){
+      self.showPlayers();
+    }, 2000);
   }
 
   self._cleanup = function(){
@@ -130,6 +157,7 @@ var Game = function(){
     $("#player1").removeClass().addClass("player");
     $("#player2").removeClass().addClass("player");
     $("#result").removeClass().addClass("screen");
+    $("#record input").val("");
   }
 
   self.showPlayers = function(){
@@ -185,11 +213,36 @@ var Game = function(){
     self._showScreen("result");
     $("#result").addClass("winner-" + self.winner().kind);
 
-    self._setMusic("result-" +  + _.random(1, 3));
+    self._setMusic("result-" + _.random(1, 3));
 
-    setTimeout(function(){
-      self.start();
-    }, 10000);
+    if (self.winner().recordsman()){
+      setTimeout(function(){
+        self.showRecord();
+      }, 3000);
+    } else {
+      setTimeout(function(){
+        self.showLeaderboard();
+      }, 4000);
+    }
+  }
+
+  self.showRecord = function(){
+    self.state = "record";
+    self._showScreen("record");
+
+    var input = $("#record input");
+    $("#record input").on("keyup", function(e){
+      if (e.which == 13){
+        if (input.val().length > 0){
+          self.winner().saveRecord(input.val());
+          input.off("keyup");
+
+          setTimeout(function(){
+            self.showLeaderboard();
+          }, 200);
+        }
+      }
+    });
   }
 
   self.setWinner = function(player){
@@ -208,6 +261,34 @@ var Game = function(){
     } else {
       return self.player2;
     }
+  }
+
+  self.showLeaderboard = function(){
+    self.state = "leaderboard";
+    self._showScreen("leaderboard");
+
+    var results = [];
+    for (var key in localStorage){
+      results.push(localStorage.getItem(key));
+    }
+
+    results = _(results).sortBy(function(item){
+      return JSON.parse(item).time;
+    });
+
+    $.each(results, function(i, raw){
+      var item = JSON.parse(raw);
+      var html = $("#leaderboard .row")[i];
+      $(html).find(".hero").text(item.hero);
+      $(html).find(".player").text(item.id);
+    });
+
+    $(document.body).on("keyup", function(e){
+      if (e.which == 32){
+        $(document.body).off("keyup");
+        self.start();
+      }
+    });
   }
 
   self._setMusic = function(track){
@@ -245,7 +326,7 @@ var Game = function(){
           setTimeout(function(){
             $(".hero-" + p2).addClass("player-2").addClass("selecting");
           }, 200);
-        }, i * 500);
+        }, i * 800);
       } else {
         setTimeout(function(){
           tmpArray = _([1,2,3,4,5]).shuffle();
@@ -268,13 +349,13 @@ var Game = function(){
             $(".hero").removeClass("player-1").removeClass("player-2").
               removeClass("selected").removeClass("selecting");
           }, 10000)
-        }, i * 500);
+        }, i * 800);
       }
 
       i = i + 1;
     }
 
-    return 6 * 500;
+    return 6 * 800 + 1000;
   }
 }
 
@@ -303,4 +384,15 @@ $(function(){
   ws.onerror = function(e) {
     console.log(e)
   }
+
+  _.range(1, 6).forEach(function(i){
+    if (!localStorage.getItem("hero-" + i)){
+      var defaultData = {
+        id: "",
+        time: 1000000000000,
+        hero: ["", "AARON", "SANDI", "BOZHIDAR", "ERIK", "JONAS"][i]
+      }
+      localStorage.setItem("hero-" + i, JSON.stringify(defaultData));
+    }
+  })
 });

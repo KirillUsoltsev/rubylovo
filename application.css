@@ -5,6 +5,10 @@ html, body {
   font-family: Geometria;
 }
 
+.clearfix {
+  clear: both;
+}
+
 .screen {
   display: none;
   height: 100%;
@@ -546,6 +550,52 @@ html, body {
 
 #result.winner-5 {
   background-image: url("images/result-5-wins.png");
+}
+
+#record {
+  background: url("images/record.png") no-repeat left top;
+}
+
+#record input {
+  border: none;
+  outline: none;
+  padding: 0;
+  height: 190px;
+  width: 921px;
+  font-size: 122px;
+  font-weight: 800;
+  text-align: center;
+  position: absolute;
+  left: 490px;
+  top: 608px;
+  color: red;
+  font-family: Geometria;
+}
+
+#leaderboard {
+  background: url("images/leaderboard.png") no-repeat left top;
+}
+
+#leaderboard .container {
+  width: 1620px;
+  padding: 294px 0 0 150px;
+}
+
+#leaderboard .row {
+  margin-bottom: 44px;
+}
+
+#leaderboard .hero, #leaderboard .player {
+  line-height: 107px;
+  font-weight: 800;
+  font-size: 48px;
+  text-align: center;
+  width: 651px;
+  float: left;
+}
+
+#leaderboard .hero {
+  margin-right: 318px;
 }
 
 #fullscreen {
