@@ -179,80 +179,49 @@ var Game = function(){
   }
 
   self._setupRandomPlayers = function(){
-    var variants = [0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4];
-    var array = shuffle(variants);
-    var player1Position = getRandomInt(10, 19);
-    var player2Position = getRandomInt(10, 19);
-    var player1 = array[player1Position];
-    var player2 = array[player2Position];
-    var timeout = 200;
+    var player1;
+    var player2;
+    var p1;
+    var p2;
+    var tmpArray;
+    var i = 0;
 
-    while(player1 == player2){
-      player2Position = getRandomInt(10, 19);
-      player2 = array[player2Position];
+    while ((i <= 6) && !player1 && !player2){
+      if (i < 6){
+        setTimeout(function(){
+          tmpArray = _([1,2,3,4,5]).shuffle();
+          p1 = tmpArray.pop();
+          p2 = tmpArray.pop();
+          $(".hero").removeClass("player-1").removeClass("player-2").
+            removeClass("selecting");
+          $(".hero-" + p1).addClass("player-1").addClass("selecting");
+          setTimeout(function(){
+            $(".hero-" + p2).addClass("player-2").addClass("selecting");
+          }, 200);
+        }, i * 500);
+      } else {
+        setTimeout(function(){
+          tmpArray = _([1,2,3,4,5]).shuffle();
+          p1 = tmpArray.pop();
+          p2 = tmpArray.pop();
+          $(".hero").removeClass("player-1").removeClass("player-2").
+            removeClass("selecting");
+          tmpArray = _([1,2,3,4,5]).shuffle();
+          player1 = p1;
+          player2 = p2;
+
+          $(".hero-" + p1).addClass("player-1").addClass("selected");
+          $(".hero-" + p2).addClass("player-2").addClass("selected");
+        }, i * 500)
+      }
+
+      i = i + 1;
     }
 
-    // console.log(player1, player2);
+    self.player1 = new Player(self, 1, player1);
+    self.player2 = new Player(self, 2, player2);
 
-    self.player1 = new Player(self, 1, player1 + 1);
-    self.player2 = new Player(self, 2, player2 + 1);
-
-    $(".hero-" + self.player1.kind).addClass("selecting").addClass("player-1");
-    setTimeout(function(){
-      $(".hero-" + self.player1.kind).addClass("selected").
-        removeClass("selecting");
-    }, 200);
-
-    $(".hero-" + self.player2.kind).addClass("selecting").addClass("player-2");
-    setTimeout(function(){
-      $(".hero-" + self.player2.kind).addClass("selected").
-        removeClass("selecting");
-    }, 200);
-
-    return 400;
-
-    // var setSelecting = function(num, heroNum){
-    //   $(".hero").removeClass("selecting").removeClass("player-" + num);
-    //   var hero = $(".hero-" + heroNum);
-    //   hero.addClass("selecting")
-    //   if (!hero.hasClass("selected")){
-    //     hero.addClass("player-" + num);
-    //   }
-    // }
-    //
-    // var setPlayer = function(num){
-    //   $(".hero.player-" + num).addClass("selected").removeClass("selecting");
-    // }
-    //
-    // // selecting player-1
-    // _(player1Position).times(function(n){
-    //   var heroNum = n % 5 + 1;
-    //   setTimeout(function(){
-    //     setSelecting(1, heroNum)
-    //   }, timeout * n);
-    // });
-    //
-    // // select player-1
-    // setTimeout(function(){
-    //   setPlayer(1);
-    // }, timeout * (player1Position - 1));
-    //
-    // var offset = timeout * player1Position + 400;
-    //
-    // // selecting player-2
-    // _(player2Position).times(function(n){
-    //   var heroNum = n % 5 + 1;
-    //   setTimeout(function(){
-    //     setSelecting(2, heroNum)
-    //   }, offset + timeout * n);
-    // });
-    //
-    // // select player-2
-    // setTimeout(function(){
-    //   setPlayer(2);
-    // }, offset + timeout * (player2Position - 1) + 400);
-    //
-    // return offset + timeout * (player2Position - 1) + 400;
+    return 6 * 500;
   }
 }
 
