@@ -42,12 +42,14 @@ var Player = function(game, num, kind){
     if (self.shot > 16){
       self.shot = 1;
     }
-    self.element.addClass("frame-" + self.shot);
+    if (self.game.state == "race"){
+      self.element.addClass("frame-" + self.shot);
+    }
   }, 64);
 
   self.play = function(left, right){
     if ((left && right) || (!left && !right)){
-      return false
+      return false;
     }
 
     if ((left && self.lastStep != "left") || (right && self.lastStep != "right")){
@@ -92,7 +94,7 @@ var Game = function(){
   self.player1 = null;
   self.player2 = null;
   self.winnerNumber = null;
-  self.state = "start";
+  self.state = null;
 
   self.play = function(data){
     if (self.state == "race"){
@@ -102,7 +104,10 @@ var Game = function(){
   }
 
   self.start = function(){
+    self.state = "start";
     self._showScreen("start");
+
+    self._cleanup();
 
     $(document.body).on("keyup", function(e){
       if (e.which == 32){
@@ -110,6 +115,15 @@ var Game = function(){
         self.showPlayers();
       }
     });
+  }
+
+  self._cleanup = function(){
+    self.winnerNumber = null;
+    self.player1 = null;
+    self.player2 = null;
+    $("#player1").css("left", 0);
+    $("#player2").css("left", 0);
+    $("#result").removeClass().addClass("screen");
   }
 
   self.showPlayers = function(){
@@ -151,7 +165,7 @@ var Game = function(){
 
     setTimeout(function(){
       self.showRace();
-      screen.removeClass();
+      screen.removeClass().addClass("screen");
     }, 5200);
   }
 
@@ -164,15 +178,19 @@ var Game = function(){
     self.state = "result";
     self._showScreen("result");
     $("#result").addClass("winner-" + self.winner().kind);
+
+    setTimeout(function(){
+      self.start();
+    }, 2000);
   }
 
-  self.setWinner = function(num){
+  self.setWinner = function(player){
     if (self.winnerNumber == null){
-      self.winnerNumber = num;
+      self.winnerNumber = player.num;
       self.showResult();
 
-      clearInterval(self.player1);
-      clearInterval(self.player2);
+      clearInterval(self.player1.animation);
+      clearInterval(self.player2.animation);
     }
   }
 
@@ -226,6 +244,11 @@ var Game = function(){
 
           self.player1 = new Player(self, 1, player1);
           self.player2 = new Player(self, 2, player2);
+
+          setTimeout(function(){
+            $(".hero").removeClass("player-1").removeClass("player-2").
+              removeClass("selected").removeClass("selecting");
+          }, 10000)
         }, i * 500);
       }
 
