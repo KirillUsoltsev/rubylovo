@@ -34,7 +34,7 @@ var Player = function(game, num, kind){
     });
   }
 
-  setInterval(function(){
+  self.animation = setInterval(function(){
     self.element.removeClass(function(index, css){
       return (css.match (/(^|\s)frame-\S+/g) || []).join(" ");
     });
@@ -92,10 +92,13 @@ var Game = function(){
   self.player1 = null;
   self.player2 = null;
   self.winnerNumber = null;
+  self.state = "start";
 
   self.play = function(data){
-    self.player1.play(data[1], data[0]);
-    self.player2.play(data[3], data[2]);
+    if (self.state == "race"){
+      self.player1.play(data[1], data[0]);
+      self.player2.play(data[3], data[2]);
+    }
   }
 
   self.start = function(){
@@ -103,12 +106,14 @@ var Game = function(){
 
     $(document.body).on("keyup", function(e){
       if (e.which == 32){
+        $(document.body).off("keyup");
         self.showPlayers();
       }
     });
   }
 
   self.showPlayers = function(){
+    self.state = "players";
     self._showScreen("players");
 
     var timeout = self._setupRandomPlayers();
@@ -118,6 +123,7 @@ var Game = function(){
   }
 
   self.showStarting = function(){
+    self.state = "starting";
     var screen = $("#starting");
 
     screen.find(".player-1").text(self.player1.heroName());
@@ -150,10 +156,12 @@ var Game = function(){
   }
 
   self.showRace = function(){
+    self.state = "race";
     self._showScreen("race");
   }
 
   self.showResult = function(){
+    self.state = "result";
     self._showScreen("result");
     $("#result").addClass("winner-" + self.winner().kind);
   }
@@ -162,6 +170,9 @@ var Game = function(){
     if (self.winnerNumber == null){
       self.winnerNumber = num;
       self.showResult();
+
+      clearInterval(self.player1);
+      clearInterval(self.player2);
     }
   }
 
@@ -212,14 +223,14 @@ var Game = function(){
 
           $(".hero-" + p1).addClass("player-1").addClass("selected");
           $(".hero-" + p2).addClass("player-2").addClass("selected");
-        }, i * 500)
+
+          self.player1 = new Player(self, 1, player1);
+          self.player2 = new Player(self, 2, player2);
+        }, i * 500);
       }
 
       i = i + 1;
     }
-
-    self.player1 = new Player(self, 1, player1);
-    self.player2 = new Player(self, 2, player2);
 
     return 6 * 500;
   }
