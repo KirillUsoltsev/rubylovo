@@ -15,6 +15,7 @@ var Player = function(game, num, kind){
   self.kind = kind;
   self.game = game;
   self.element = $("#player" + self.num);
+  self.shot = 1;
 
   if (self.num == 1){
     $(document.body).on("keyup", function(e){
@@ -23,6 +24,17 @@ var Player = function(game, num, kind){
       }
     });
   }
+
+  setInterval(function(){
+    self.element.removeClass(function(index, css){
+      return (css.match (/(^|\s)frame-\S+/g) || []).join(" ");
+    });
+    self.shot += 1;
+    if (self.shot > 16){
+      self.shot = 1;
+    }
+    self.element.addClass("frame-" + self.shot);
+  }, 64);
 
   self.step = function(){
     self._incrementPosition();
@@ -39,7 +51,7 @@ var Player = function(game, num, kind){
   }
 
   self._animateCharacter = function(){
-    self.element.width("" + self.position + "%");
+    self.element.css("left", "" + (self.position * 1000 / 1760.0) + "%");
   }
 
   self._checkWin = function(){

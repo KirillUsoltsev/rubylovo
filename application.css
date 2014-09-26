@@ -176,14 +176,96 @@ html, body {
 }
 
 #race {
-  color: white;
+  background: url("images/race.png") no-repeat left top;
+}
+
+#race .track {
+  width: 1760px;
+  margin-left: 30px;
 }
 
 #race .player {
-  height: 50%;
-  width: 0%;
-  background: black;
+  height: 430px;
+  width: 280px;
+  left: 0%;
+  position: absolute;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
+
+#race .player:first-child {
+  top: 90px;
+}
+
+#race .player:last-child {
+  bottom: 90px;
+}
+
+#race .player.frame-1 {
+  background-image: url("images/animation/hero-1-1.png");
+}
+
+#race .player.frame-2 {
+  background-image: url("images/animation/hero-1-2.png");
+}
+
+#race .player.frame-3 {
+  background-image: url("images/animation/hero-1-3.png");
+}
+
+#race .player.frame-4 {
+  background-image: url("images/animation/hero-1-4.png");
+}
+
+#race .player.frame-5 {
+  background-image: url("images/animation/hero-1-5.png");
+}
+
+#race .player.frame-6 {
+  background-image: url("images/animation/hero-1-6.png");
+}
+
+#race .player.frame-7 {
+  background-image: url("images/animation/hero-1-7.png");
+}
+
+#race .player.frame-8 {
+  background-image: url("images/animation/hero-1-8.png");
+}
+
+#race .player.frame-9 {
+  background-image: url("images/animation/hero-1-9.png");
+}
+
+#race .player.frame-10 {
+  background-image: url("images/animation/hero-1-10.png");
+}
+
+#race .player.frame-11 {
+  background-image: url("images/animation/hero-1-11.png");
+}
+
+#race .player.frame-12 {
+  background-image: url("images/animation/hero-1-12.png");
+}
+
+#race .player.frame-13 {
+  background-image: url("images/animation/hero-1-13.png");
+}
+
+#race .player.frame-14 {
+  background-image: url("images/animation/hero-1-14.png");
+}
+
+#race .player.frame-15 {
+  background-image: url("images/animation/hero-1-15.png");
+}
+
+#race .player.frame-16 {
+  background-image: url("images/animation/hero-1-16.png");
+}
+
+#race .player
 
 #fullscreen {
   background: black;
