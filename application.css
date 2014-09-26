@@ -201,68 +201,328 @@ html, body {
   bottom: 90px;
 }
 
-#race .player.frame-1 {
+#race .player.hero-1.frame-1 {
   background-image: url("images/animation/hero-1-1.png");
 }
 
-#race .player.frame-2 {
+#race .player.hero-1.frame-2 {
   background-image: url("images/animation/hero-1-2.png");
 }
 
-#race .player.frame-3 {
+#race .player.hero-1.frame-3 {
   background-image: url("images/animation/hero-1-3.png");
 }
 
-#race .player.frame-4 {
+#race .player.hero-1.frame-4 {
   background-image: url("images/animation/hero-1-4.png");
 }
 
-#race .player.frame-5 {
+#race .player.hero-1.frame-5 {
   background-image: url("images/animation/hero-1-5.png");
 }
 
-#race .player.frame-6 {
+#race .player.hero-1.frame-6 {
   background-image: url("images/animation/hero-1-6.png");
 }
 
-#race .player.frame-7 {
+#race .player.hero-1.frame-7 {
   background-image: url("images/animation/hero-1-7.png");
 }
 
-#race .player.frame-8 {
+#race .player.hero-1.frame-8 {
   background-image: url("images/animation/hero-1-8.png");
 }
 
-#race .player.frame-9 {
+#race .player.hero-1.frame-9 {
   background-image: url("images/animation/hero-1-9.png");
 }
 
-#race .player.frame-10 {
+#race .player.hero-1.frame-10 {
   background-image: url("images/animation/hero-1-10.png");
 }
 
-#race .player.frame-11 {
+#race .player.hero-1.frame-11 {
   background-image: url("images/animation/hero-1-11.png");
 }
 
-#race .player.frame-12 {
+#race .player.hero-1.frame-12 {
   background-image: url("images/animation/hero-1-12.png");
 }
 
-#race .player.frame-13 {
+#race .player.hero-1.frame-13 {
   background-image: url("images/animation/hero-1-13.png");
 }
 
-#race .player.frame-14 {
+#race .player.hero-1.frame-14 {
   background-image: url("images/animation/hero-1-14.png");
 }
 
-#race .player.frame-15 {
+#race .player.hero-1.frame-15 {
   background-image: url("images/animation/hero-1-15.png");
 }
 
-#race .player.frame-16 {
+#race .player.hero-1.frame-16 {
   background-image: url("images/animation/hero-1-16.png");
+}
+
+
+#race .player.hero-2.frame-1 {
+  background-image: url("images/animation/hero-2-1.png");
+}
+
+#race .player.hero-2.frame-2 {
+  background-image: url("images/animation/hero-2-2.png");
+}
+
+#race .player.hero-2.frame-3 {
+  background-image: url("images/animation/hero-2-3.png");
+}
+
+#race .player.hero-2.frame-4 {
+  background-image: url("images/animation/hero-2-4.png");
+}
+
+#race .player.hero-2.frame-5 {
+  background-image: url("images/animation/hero-2-5.png");
+}
+
+#race .player.hero-2.frame-6 {
+  background-image: url("images/animation/hero-2-6.png");
+}
+
+#race .player.hero-2.frame-7 {
+  background-image: url("images/animation/hero-2-7.png");
+}
+
+#race .player.hero-2.frame-8 {
+  background-image: url("images/animation/hero-2-8.png");
+}
+
+#race .player.hero-2.frame-9 {
+  background-image: url("images/animation/hero-2-9.png");
+}
+
+#race .player.hero-2.frame-10 {
+  background-image: url("images/animation/hero-2-10.png");
+}
+
+#race .player.hero-2.frame-11 {
+  background-image: url("images/animation/hero-2-11.png");
+}
+
+#race .player.hero-2.frame-12 {
+  background-image: url("images/animation/hero-2-12.png");
+}
+
+#race .player.hero-2.frame-13 {
+  background-image: url("images/animation/hero-2-13.png");
+}
+
+#race .player.hero-2.frame-14 {
+  background-image: url("images/animation/hero-2-14.png");
+}
+
+#race .player.hero-2.frame-15 {
+  background-image: url("images/animation/hero-2-15.png");
+}
+
+#race .player.hero-2.frame-16 {
+  background-image: url("images/animation/hero-2-16.png");
+}
+
+
+#race .player.hero-3.frame-1 {
+  background-image: url("images/animation/hero-3-1.png");
+}
+
+#race .player.hero-3.frame-2 {
+  background-image: url("images/animation/hero-3-2.png");
+}
+
+#race .player.hero-3.frame-3 {
+  background-image: url("images/animation/hero-3-3.png");
+}
+
+#race .player.hero-3.frame-4 {
+  background-image: url("images/animation/hero-3-4.png");
+}
+
+#race .player.hero-3.frame-5 {
+  background-image: url("images/animation/hero-3-5.png");
+}
+
+#race .player.hero-3.frame-6 {
+  background-image: url("images/animation/hero-3-6.png");
+}
+
+#race .player.hero-3.frame-7 {
+  background-image: url("images/animation/hero-3-7.png");
+}
+
+#race .player.hero-3.frame-8 {
+  background-image: url("images/animation/hero-3-8.png");
+}
+
+#race .player.hero-3.frame-9 {
+  background-image: url("images/animation/hero-3-9.png");
+}
+
+#race .player.hero-3.frame-10 {
+  background-image: url("images/animation/hero-3-10.png");
+}
+
+#race .player.hero-3.frame-11 {
+  background-image: url("images/animation/hero-3-11.png");
+}
+
+#race .player.hero-3.frame-12 {
+  background-image: url("images/animation/hero-3-12.png");
+}
+
+#race .player.hero-3.frame-13 {
+  background-image: url("images/animation/hero-3-13.png");
+}
+
+#race .player.hero-3.frame-14 {
+  background-image: url("images/animation/hero-3-14.png");
+}
+
+#race .player.hero-3.frame-15 {
+  background-image: url("images/animation/hero-3-15.png");
+}
+
+#race .player.hero-3.frame-16 {
+  background-image: url("images/animation/hero-3-16.png");
+}
+
+
+#race .player.hero-4.frame-1 {
+  background-image: url("images/animation/hero-4-1.png");
+}
+
+#race .player.hero-4.frame-2 {
+  background-image: url("images/animation/hero-4-2.png");
+}
+
+#race .player.hero-4.frame-3 {
+  background-image: url("images/animation/hero-4-3.png");
+}
+
+#race .player.hero-4.frame-4 {
+  background-image: url("images/animation/hero-4-4.png");
+}
+
+#race .player.hero-4.frame-5 {
+  background-image: url("images/animation/hero-4-5.png");
+}
+
+#race .player.hero-4.frame-6 {
+  background-image: url("images/animation/hero-4-6.png");
+}
+
+#race .player.hero-4.frame-7 {
+  background-image: url("images/animation/hero-4-7.png");
+}
+
+#race .player.hero-4.frame-8 {
+  background-image: url("images/animation/hero-4-8.png");
+}
+
+#race .player.hero-4.frame-9 {
+  background-image: url("images/animation/hero-4-9.png");
+}
+
+#race .player.hero-4.frame-10 {
+  background-image: url("images/animation/hero-4-10.png");
+}
+
+#race .player.hero-4.frame-11 {
+  background-image: url("images/animation/hero-4-11.png");
+}
+
+#race .player.hero-4.frame-12 {
+  background-image: url("images/animation/hero-4-12.png");
+}
+
+#race .player.hero-4.frame-13 {
+  background-image: url("images/animation/hero-4-13.png");
+}
+
+#race .player.hero-4.frame-14 {
+  background-image: url("images/animation/hero-4-14.png");
+}
+
+#race .player.hero-4.frame-15 {
+  background-image: url("images/animation/hero-4-15.png");
+}
+
+#race .player.hero-4.frame-16 {
+  background-image: url("images/animation/hero-4-16.png");
+}
+
+
+#race .player.hero-5.frame-1 {
+  background-image: url("images/animation/hero-5-1.png");
+}
+
+#race .player.hero-5.frame-2 {
+  background-image: url("images/animation/hero-5-2.png");
+}
+
+#race .player.hero-5.frame-3 {
+  background-image: url("images/animation/hero-5-3.png");
+}
+
+#race .player.hero-5.frame-4 {
+  background-image: url("images/animation/hero-5-4.png");
+}
+
+#race .player.hero-5.frame-5 {
+  background-image: url("images/animation/hero-5-5.png");
+}
+
+#race .player.hero-5.frame-6 {
+  background-image: url("images/animation/hero-5-6.png");
+}
+
+#race .player.hero-5.frame-7 {
+  background-image: url("images/animation/hero-5-7.png");
+}
+
+#race .player.hero-5.frame-8 {
+  background-image: url("images/animation/hero-5-8.png");
+}
+
+#race .player.hero-5.frame-9 {
+  background-image: url("images/animation/hero-5-9.png");
+}
+
+#race .player.hero-5.frame-10 {
+  background-image: url("images/animation/hero-5-10.png");
+}
+
+#race .player.hero-5.frame-11 {
+  background-image: url("images/animation/hero-5-11.png");
+}
+
+#race .player.hero-5.frame-12 {
+  background-image: url("images/animation/hero-5-12.png");
+}
+
+#race .player.hero-5.frame-13 {
+  background-image: url("images/animation/hero-5-13.png");
+}
+
+#race .player.hero-5.frame-14 {
+  background-image: url("images/animation/hero-5-14.png");
+}
+
+#race .player.hero-5.frame-15 {
+  background-image: url("images/animation/hero-5-15.png");
+}
+
+#race .player.hero-5.frame-16 {
+  background-image: url("images/animation/hero-5-16.png");
 }
 
 #result {

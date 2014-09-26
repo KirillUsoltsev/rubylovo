@@ -18,6 +18,8 @@ var Player = function(game, num, kind){
   self.element = $("#player" + self.num);
   self.shot = 1;
 
+  self.element.addClass("hero-" + self.kind);
+
   if (self.num == 1){
     $(document.body).on("keyup", function(e){
       if (e.which == 81 || e.which == 87){ // q
@@ -123,6 +125,8 @@ var Game = function(){
     self.player2 = null;
     $("#player1").css("left", 0);
     $("#player2").css("left", 0);
+    $("#player1").removeClass().addClass("player");
+    $("#player2").removeClass().addClass("player");
     $("#result").removeClass().addClass("screen");
   }
 
@@ -236,8 +240,11 @@ var Game = function(){
           $(".hero").removeClass("player-1").removeClass("player-2").
             removeClass("selecting");
           tmpArray = _([1,2,3,4,5]).shuffle();
-          player1 = p1;
-          player2 = p2;
+          // player1 = p1;
+          // player2 = p2;
+
+          player1 = 1;
+          player2 = 2;
 
           $(".hero-" + p1).addClass("player-1").addClass("selected");
           $(".hero-" + p2).addClass("player-2").addClass("selected");
