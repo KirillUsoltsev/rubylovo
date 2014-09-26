@@ -30,6 +30,10 @@ var Player = function(game, num, kind){
     self._checkWin();
   }
 
+  self.heroName = function(){
+    return ["AARON", "SANDI", "BOZHIDAR", "ERIK", "JONAS"][self.kind];
+  }
+
   self._incrementPosition = function(){
     self.position = self.position + 1;
   }
@@ -65,8 +69,42 @@ var Game = function(){
   self.showPlayers = function(){
     self._showScreen("players");
 
-    self._setupRandomPlayers();
-    // self.showRace();
+    var timeout = self._setupRandomPlayers();
+    setTimeout(function(){
+      self.showStarting();
+    }, timeout + 2000);
+  }
+
+  self.showStarting = function(){
+    var screen = $("#starting");
+
+    screen.find(".player-1").text(self.player1.heroName());
+    screen.find(".player-2").text(self.player2.heroName());
+
+    self._showScreen("starting");
+
+    setTimeout(function(){
+      screen.addClass("starting-3");
+    }, 2000);
+
+    setTimeout(function(){
+      screen.addClass("starting-2");
+      screen.removeClass("starting-3");
+    }, 3000);
+
+    setTimeout(function(){
+      screen.addClass("starting-1");
+      screen.removeClass("starting-2");
+    }, 4000);
+
+    setTimeout(function(){
+      screen.addClass("starting-go");
+      self.showRace();
+    }, 5000);
+
+    setTimeout(function(){
+      screen.removeClass();
+    }, 8000)
   }
 
   self.showRace = function(){
@@ -141,7 +179,7 @@ var Game = function(){
       setPlayer(1);
     }, timeout * (player1Position - 1));
 
-    var offset = timeout * player1Position;
+    var offset = timeout * player1Position + 400;
 
     // selecting player-2
     _(player2Position).times(function(n){
@@ -154,7 +192,9 @@ var Game = function(){
     // select player-2
     setTimeout(function(){
       setPlayer(2);
-    }, offset + timeout * (player2Position - 1));
+    }, offset + timeout * (player2Position - 1) + 400);
+
+    return offset + timeout * (player2Position - 1) + 400;
   }
 }
 
