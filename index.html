@@ -2,18 +2,30 @@
 <html>
   <head>
     <script src="jquery.js"></script>
+    <script src="underscore.js"></script>
     <script src="application.js"></script>
     <link rel="stylesheet" href="reset.css" media="all">
     <link rel="stylesheet" href="application.css" media="all">
   </head>
   <body>
-    <div class="screen" id="start"></div>
-    <div class="screen" id="players"></div>
-    <div class="screen" id="race">
-      <div class="player" id="player1"></div>
-      <div class="player" id="player2"></div>
-    </div>
+    <div id="window">
+      <div class="screen" id="start"></div>
+      <div class="screen" id="players">
+        <div class="container">
+          <div class="hero hero-1"></div>
+          <div class="hero hero-2"></div>
+          <div class="hero hero-3"></div>
+          <div class="hero hero-4"></div>
+          <div class="hero hero-5"></div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+      <div class="screen" id="race">
+        <div class="player" id="player1"></div>
+        <div class="player" id="player2"></div>
+      </div>
 
-    <div class="screen" id="result"></div>
+      <div class="screen" id="result"></div>
+    </div>
   </body>
 </html>

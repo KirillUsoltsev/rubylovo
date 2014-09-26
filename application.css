@@ -1,5 +1,7 @@
 html, body {
   height: 100%;
+  background: black;
+  position: relative;
 }
 
 .screen {
@@ -7,22 +9,138 @@ html, body {
   height: 100%;
 }
 
+#window {
+  width: 1920px;
+  height: 1080px;
+  background: white;
+}
+
 #start {
-  background: red;
+  background: url("images/start.png") no-repeat top left;
   color: white;
 }
 
 #players {
-  background: blue;
+  background: url("images/select.png") no-repeat top left;
+  padding-top: 280px;
   color: white;
+}
+
+#players .container {
+  width: 1605px;
+  margin: 0 auto;
+}
+
+#players .hero {
+  width: 321px;
+  height: 640px;
+  float: left;
+  background: #eee;
+  position: relative;
+}
+
+#players .hero.hero-1 {
+  background: url("images/hero-1.png");
+}
+
+#players .hero.hero-1.selecting {
+  background: url("images/hero-1-selecting.png");
+}
+
+#players .hero.hero-1.selected {
+  background: url("images/hero-1-selected.png");
+}
+
+#players .hero.hero-2 {
+  background: url("images/hero-2.png");
+}
+
+#players .hero.hero-2.selecting {
+  background: url("images/hero-2-selecting.png");
+}
+
+#players .hero.hero-2.selected {
+  background: url("images/hero-2-selected.png");
+}
+
+#players .hero.hero-3 {
+  background: url("images/hero-3.png");
+}
+
+#players .hero.hero-3.selecting {
+  background: url("images/hero-3-selecting.png");
+}
+
+#players .hero.hero-3.selected {
+  background: url("images/hero-3-selected.png");
+}
+
+#players .hero.hero-3 {
+  background: url("images/hero-3.png");
+}
+
+#players .hero.hero-3.selecting {
+  background: url("images/hero-3-selecting.png");
+}
+
+#players .hero.hero-3.selected {
+  background: url("images/hero-3-selected.png");
+}
+
+#players .hero.hero-4 {
+  background: url("images/hero-4.png");
+}
+
+#players .hero.hero-4.selecting {
+  background: url("images/hero-4-selecting.png");
+}
+
+#players .hero.hero-4.selected {
+  background: url("images/hero-4-selected.png");
+}
+
+#players .hero.hero-5 {
+  background: url("images/hero-5.png");
+}
+
+#players .hero.hero-5.selecting {
+  background: url("images/hero-5-selecting.png");
+}
+
+#players .hero.hero-5.selected {
+  background: url("images/hero-5-selected.png");
+}
+
+#players .hero.selecting:after, #players .hero.selected:after {
+  content: "";
+  width: 212px;
+  height: 67px;
+  position: absolute;
+  bottom: -67px;
+  left: 54px;
+}
+
+#players .hero.selecting.player-1:after {
+  background: url("images/player-1-selecting.png");
+}
+
+#players .hero.selecting.player-2:after {
+  background: url("images/player-2-selecting.png");
+}
+
+#players .hero.selected.player-1:after {
+  background: url("images/player-1-selected.png");
+}
+
+#players .hero.selected.player-2:after {
+  background: url("images/player-2-selected.png");
 }
 
 #race {
-  background: green;
   color: white;
 }
 
-.player {
+#race .player {
   height: 50%;
   width: 0%;
   background: black;
