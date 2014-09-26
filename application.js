@@ -11,6 +11,7 @@ var Player = function(game, num, kind){
   var self = this;
 
   self.position = 0;
+  self.lastStep = null;
   self.num = num;
   self.kind = kind;
   self.game = game;
@@ -36,6 +37,22 @@ var Player = function(game, num, kind){
     self.element.addClass("frame-" + self.shot);
   }, 64);
 
+  self.play = function(left, right){
+    if ((left && right) || (!left && !right)){
+      return false
+    }
+
+    if ((left && self.lastStep != "left") || (right && self.lastStep != "right")){
+      self.step();
+    }
+
+    if (left) {
+      self.lastStep = "left"
+    } else {
+      self.lastStep = "right"
+    }
+  }
+
   self.step = function(){
     self._incrementPosition();
     self._animateCharacter();
@@ -51,7 +68,7 @@ var Player = function(game, num, kind){
   }
 
   self._animateCharacter = function(){
-    self.element.css("left", "" + (self.position * 1000 / 1760.0) + "%");
+    self.element.css("left", "" + (self.position * 2600 / 1760.0) + "%");
   }
 
   self._checkWin = function(){
@@ -67,6 +84,11 @@ var Game = function(){
   self.player1 = null;
   self.player2 = null;
   self.winnerNumber = null;
+
+  self.play = function(data){
+    self.player1.play(data[1], data[0]);
+    self.player2.play(data[3], data[2]);
+  }
 
   self.start = function(){
     self._showScreen("start");
@@ -167,8 +189,6 @@ var Game = function(){
     self.player1 = new Player(self, 1, player1 + 1);
     self.player2 = new Player(self, 2, player2 + 1);
 
-    console.log([self.player1.kind, self.player2.kind])
-
     $(".hero-" + self.player1.kind).addClass("selecting").addClass("player-1");
     setTimeout(function(){
       $(".hero-" + self.player1.kind).addClass("selected").
@@ -242,4 +262,15 @@ $(function(){
     var game = new Game();
     game.start();
   // };
+
+
+  var ws = new WebSocket('ws://0.0.0.0:1666')
+  ws.onmessage = function(e) {
+    var data = JSON.parse(e.data)
+    // console.log(data)
+    game.play(data);
+  }
+  ws.onerror = function(e) {
+    console.log(e)
+  }
 });
