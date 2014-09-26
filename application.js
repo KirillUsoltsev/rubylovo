@@ -109,6 +109,8 @@ var Game = function(){
     self.state = "start";
     self._showScreen("start");
 
+    self._setMusic("race-" + _.random(1, 4));
+
     self._cleanup();
 
     $(document.body).on("keyup", function(e){
@@ -183,9 +185,11 @@ var Game = function(){
     self._showScreen("result");
     $("#result").addClass("winner-" + self.winner().kind);
 
+    self._setMusic("result-" +  + _.random(1, 3));
+
     setTimeout(function(){
       self.start();
-    }, 2000);
+    }, 10000);
   }
 
   self.setWinner = function(player){
@@ -204,6 +208,16 @@ var Game = function(){
     } else {
       return self.player2;
     }
+  }
+
+  self._setMusic = function(track){
+    if (self.music){
+      self.music.pause();
+    }
+
+    self.music = new Audio("audio/" + track + ".mp3");
+    self.music.loop = true;
+    self.music.play();
   }
 
   self._showScreen = function(id){
@@ -240,11 +254,9 @@ var Game = function(){
           $(".hero").removeClass("player-1").removeClass("player-2").
             removeClass("selecting");
           tmpArray = _([1,2,3,4,5]).shuffle();
-          // player1 = p1;
-          // player2 = p2;
 
-          player1 = 1;
-          player2 = 2;
+          player1 = p1;
+          player2 = p2;
 
           $(".hero-" + p1).addClass("player-1").addClass("selected");
           $(".hero-" + p2).addClass("player-2").addClass("selected");
