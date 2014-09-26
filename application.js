@@ -26,6 +26,14 @@ var Player = function(game, num, kind){
     });
   }
 
+  if (self.num == 2){
+    $(document.body).on("keyup", function(e){
+      if (e.which == 79 || e.which == 80){
+        self.step();
+      }
+    });
+  }
+
   setInterval(function(){
     self.element.removeClass(function(index, css){
       return (css.match (/(^|\s)frame-\S+/g) || []).join(" ");
@@ -68,7 +76,7 @@ var Player = function(game, num, kind){
   }
 
   self._animateCharacter = function(){
-    self.element.css("left", "" + (self.position * 2600 / 1760.0) + "%");
+    self.element.css("left", "" + (1540.0 * self.position / 100) + "px");
   }
 
   self._checkWin = function(){
@@ -147,7 +155,7 @@ var Game = function(){
 
   self.showResult = function(){
     self._showScreen("result");
-    $("#result").text("player" + self.winner().num + " wins");
+    $("#result").addClass("winner-" + self.winner().kind);
   }
 
   self.setWinner = function(num){
@@ -264,7 +272,7 @@ $(function(){
   // };
 
 
-  var ws = new WebSocket('ws://0.0.0.0:1666')
+  var ws = new WebSocket("ws://0.0.0.0:1666")
   ws.onmessage = function(e) {
     var data = JSON.parse(e.data)
     // console.log(data)

@@ -265,7 +265,29 @@ html, body {
   background-image: url("images/animation/hero-1-16.png");
 }
 
-#race .player
+#result {
+  background: url("") no-repeat left top;
+}
+
+#result.winner-1 {
+  background-image: url("images/result-1-wins.png");
+}
+
+#result.winner-2 {
+  background-image: url("images/result-2-wins.png");
+}
+
+#result.winner-3 {
+  background-image: url("images/result-3-wins.png");
+}
+
+#result.winner-4 {
+  background-image: url("images/result-4-wins.png");
+}
+
+#result.winner-5 {
+  background-image: url("images/result-5-wins.png");
+}
 
 #fullscreen {
   background: black;
