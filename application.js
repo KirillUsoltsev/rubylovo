@@ -49,7 +49,7 @@ var Player = function(game, num, kind){
     if (self.game.state == "race"){
       self.element.addClass("frame-" + self.shot);
     }
-  }, 64);
+  }, 48);
 
   self.play = function(left, right){
     if ((left && right) || (!left && !right)){
@@ -114,8 +114,8 @@ var Player = function(game, num, kind){
 
   self._checkWin = function(){
     if (self.position == 100){
-      self.game.setWinner(self);
       self.endAt = new Date();
+      self.game.setWinner(self);
     }
   }
 }
@@ -231,6 +231,7 @@ var Game = function(){
     self._showScreen("record");
 
     var input = $("#record input");
+    input.focus();
     $("#record input").on("keyup", function(e){
       if (e.which == 13){
         if (input.val().length > 0){
@@ -360,30 +361,28 @@ var Game = function(){
 }
 
 $(function(){
-  // var el = document.createElement("div"),
-  //     docEl = document.documentElement;
-  // el.innerText = "Click to start";
-  // el.id = "fullscreen"
-  // document.body.appendChild(el)
-  //
-  // el.onclick = function() {
-  //   docEl.webkitRequestFullscreen();
-  //   document.body.removeChild(el);
-  //
+  var el = document.createElement("div"),
+      docEl = document.documentElement;
+  el.innerText = "Click to start";
+  el.id = "fullscreen"
+  document.body.appendChild(el)
+
+  el.onclick = function() {
+    docEl.webkitRequestFullscreen();
+    document.body.removeChild(el);
+
     var game = new Game();
     game.start();
-  // };
 
-
-  var ws = new WebSocket("ws://0.0.0.0:1666")
-  ws.onmessage = function(e) {
-    var data = JSON.parse(e.data)
-    // console.log(data)
-    game.play(data);
-  }
-  ws.onerror = function(e) {
-    console.log(e)
-  }
+    var ws = new WebSocket("ws://0.0.0.0:1666")
+    ws.onmessage = function(e) {
+      var data = JSON.parse(e.data)
+      game.play(data);
+    }
+    ws.onerror = function(e) {
+      console.log(e)
+    }
+  };
 
   _.range(1, 6).forEach(function(i){
     if (!localStorage.getItem("hero-" + i)){
