@@ -132,6 +132,11 @@ var Game = function(){
     if (self.state == "race"){
       self.player1.play(data[1], data[0]);
       self.player2.play(data[3], data[2]);
+    } else if (self.state == "leaderboard"){
+      // if (data[0] && data[1] && data[2] && data[3]){
+      //   $(document.body).off("keyup");
+      //   self.start();
+      // }
     }
   }
 
